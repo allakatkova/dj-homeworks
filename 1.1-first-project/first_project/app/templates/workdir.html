@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Страница отображения директории</title>
+</head>
+
+<body>
+    <h1>Содержимое директории:</h1>
+    {% for element in current_dir %}
+    {{ element }}
+    <br>
+    {% endfor %}
+</body>
+
+</html>
