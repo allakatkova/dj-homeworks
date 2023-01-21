@@ -28,3 +28,24 @@ DATA = {
 #     'ингредиент2': количество2,
 #   }
 # }
+
+
+def service_helper(request):
+    template_name = 'index.html'
+
+    recipe = ''.join(filter(str.isalnum, (request.path)))
+    get_recipe = DATA.get(recipe)
+
+    if get_recipe is None:
+        get_recipe = {}
+        # если рецепт не найден, его дальнейшая обработка не имеет смысла
+    else:
+        servings = request.GET.get('servings')
+        if not servings is None:
+            person_count = int(servings)
+            for key_ingridient in get_recipe.keys():
+                get_recipe[key_ingridient] *= person_count
+    context = {
+        'recipe': get_recipe
+    }
+    return render(request, template_name, context)
