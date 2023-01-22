@@ -15,7 +15,11 @@ Including another URLconf
 """
 
 from django.urls import path
+from calculator.views import service_assistant
 
 urlpatterns = [
     # здесь зарегистрируйте вашу view-функцию
+    path('omlet/', service_assistant, name='service_assistant'),
+    path('pasta/', service_assistant, name='service_assistant'),
+    path('buter/', service_assistant, name='service_assistant'),
 ]

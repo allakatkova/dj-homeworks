@@ -28,3 +28,17 @@ DATA = {
 #     'ингредиент2': количество2,
 #   }
 # }
+
+
+def service_assistant(request):
+    recipe = ''.join(filter(str.isalnum, request.path))
+    recipe_ingridients = DATA.get(recipe)
+    servings = request.GET.get('servings')
+    if not servings is None and not recipe_ingridients is None:
+        person_count = int(servings)
+        for ingridient in recipe_ingridients:
+            recipe_ingridients[ingridient] *= person_count
+    context = {
+        'recipe': recipe_ingridients
+    }
+    return render(request, 'index.html', context)
