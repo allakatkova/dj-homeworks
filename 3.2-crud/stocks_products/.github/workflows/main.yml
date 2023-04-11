@@ -1,4 +1,4 @@
-name: Тестирование и развертывание проекта
+name: Testing and deploying project
 
 on: 
   push:
